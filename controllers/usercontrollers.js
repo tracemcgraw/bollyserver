@@ -9,11 +9,15 @@ var jwt = require('jsonwebtoken');
 
 router.post('/', function(req, res){
     var username = req.body.user.username;
+    var userLastName = req.body.user.userLastName;
+    var email = req.body.user.email;
     var pass = req.body.user.password;
 
     UserModel
     .create({
         username: username,
+        userLastName: userLastName,
+        email: email,
         passwordhash: bcrypt.hashSync(pass, 10) //B1
     }).then(
         function createSuccess(user){
